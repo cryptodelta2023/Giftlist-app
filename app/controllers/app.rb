@@ -2,6 +2,7 @@
 
 require 'roda'
 require 'slim'
+require 'rack/session'
 
 module GiftListApp
   # Base class for GiftListApp Web Application
