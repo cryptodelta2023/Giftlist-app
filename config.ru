@@ -3,4 +3,4 @@
 require './require_app'
 require_app
 
-run GiftListApp::Api.freeze.app
+run GiftListApp::App.freeze.app
