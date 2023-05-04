@@ -2,7 +2,7 @@
 
 require 'http'
 
-module Credence
+module GiftListApp
   # Returns an authenticated user, or nil
   class AuthenticateAccount
     class UnauthorizedError < StandardError; end
