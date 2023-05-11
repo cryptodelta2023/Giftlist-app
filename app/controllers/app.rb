@@ -7,8 +7,8 @@ require 'rack/session'
 module GiftListApp
   # Base class for GiftListApp Web Application
   class App < Roda
-    plugin :render, engine: 'slim', views: './presentation/views'
-    plugin :assets, css: 'style.css', path: './presentation/assets'
+    plugin :render, engine: 'slim', views: '../presentation/views'
+    plugin :assets, css: 'style.css', path: '../presentation/assets'
     plugin :public, root: 'app/presentation/public'
     plugin :multi_route
     plugin :flash
