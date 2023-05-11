@@ -79,7 +79,7 @@ GEM
       redis-client (>= 0.9.0)
     redis-client (0.14.1)
       connection_pool
-    regexp_parser (2.7.0)
+    regexp_parser (2.8.0)
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.2.5)
@@ -118,7 +118,6 @@ GEM
 
 PLATFORMS
   x86_64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
   figaro (~> 1.2)
