@@ -1,0 +1,16 @@
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h3 All Projects
+  div class="col-xs-3"
+table class="table"
+  thead
+    tr
+      th Giftlist name
+      th Repo URL
+  tbody
+    - giftlists.all.each do |giftlist|
+      tr
+        td 
+          a href="/account/giftlists/#{giftlist.id}" #{giftlist.name}
+          td 
+            a href="#{giftlist.repo_url}" #{giftlist.repo_url}

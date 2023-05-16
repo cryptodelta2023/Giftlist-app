@@ -48,6 +48,8 @@ module GiftListApp
     end
 
     configure :development, :test do
+      require 'pry'
+
       # NOTE: env var REDIS_URL only used to wipe the session store (ok to be nil)
       SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
 
@@ -62,9 +64,7 @@ module GiftListApp
       #     redis_server: ENV.delete('REDIS_URL')
 
       # Allows running reload! in pry to restart entire app
-      def self.reload!
-        exec 'pry -r ./spec/test_load_all'
-      end
+      def self.reload! = exec 'pry -r ./spec/test_load_all'
     end
   end
 end
