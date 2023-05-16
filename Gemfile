@@ -25,6 +25,7 @@ gem 'rbnacl', '~>7.1'
 
 # Debugging
 gem 'pry'
+gem 'rack-test'
 
 # Development
 group :development do
@@ -40,6 +41,5 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rack-test'
   gem 'rerun'
 end
