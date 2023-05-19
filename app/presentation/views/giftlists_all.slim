@@ -5,12 +5,12 @@ div class="row" style="vertical-align: bottom;"
 table class="table"
   thead
     tr
-      th Giftlist name
-      th Repo URL
+      th Giftlist ID
+      th Giftlist Name
   tbody
     - giftlists.all.each do |giftlist|
       tr
         td 
           a href="/account/giftlists/#{giftlist.id}" #{giftlist.id}
-          td 
-            a href="#{giftlist.repo_url}" #{giftlist.repo_url}
+        td 
+          a href="#{giftlist.list_name}" #{giftlist.list_name}
