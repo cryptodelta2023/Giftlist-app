@@ -8,8 +8,9 @@ module GiftListApp
       config.messages.load_paths << File.join(__dir__, 'errors/new_giftlist.yml')
 
       params do
-        required(:id).filled
-        optional(:list_name).maybe(format?: URI::DEFAULT_PARSER.make_regexp)
+        # required(:id).filled
+        required(:list_name).filled
+        # optional(:list_name).maybe(format?: URI::DEFAULT_PARSER.make_regexp)
       end
     end
   end
