@@ -5,8 +5,7 @@ require_relative 'giftlist'
 module GiftListApp
   # Behaviors of the currently logged in account
   class Giftinfo
-    attr_reader :id, :filename, :relative_path, :description, # basic info
-                :content,
+    attr_reader :id, :giftname, :url, :description, # basic info
                 :giftlist # full details
 
     def initialize(info)
@@ -18,10 +17,9 @@ module GiftListApp
 
     def process_attributes(attributes)
       @id             = attributes['id']
-      @filename       = attributes['filename']
-      @relative_path  = attributes['relative_path']
+      @giftname       = attributes['giftname']
+      @url            = attributes['url']
       @description    = attributes['description']
-      @content        = attributes['content']
     end
 
     def process_included(included)

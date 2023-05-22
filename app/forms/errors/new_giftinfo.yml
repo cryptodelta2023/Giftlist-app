@@ -1,8 +1,8 @@
 en:
   errors:
-    id: 'provide id for giftinfo'
+    # id: 'provide id for giftinfo'
     giftname: 'provide giftname with up to 255 legal characters'
     giftname_valid?: 'giftname has illegal characters (e.g., & | \\ / <tab>'
-    path_chars?: 'relative path has illegal characters (e.g., & | <tab>)'
+    # path_chars?: 'relative path has illegal characters (e.g., & | <tab>)'
     description: 'provide a description'
     

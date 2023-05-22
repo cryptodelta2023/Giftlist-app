@@ -16,8 +16,7 @@ module GiftListApp
 
     def process_attributes(attributes)
       @id = attributes['id']
-      @name = attributes['name']
-      @repo_url = attributes['repo_url']
+      @list_name = attributes['list_name']
     end
 
     def process_relationships(relationships)

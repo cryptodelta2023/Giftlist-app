@@ -1,4 +1,4 @@
 en:
   errors:
-    id: 'Giftlist id must be filled'
+    # id: 'Giftlist id must be filled'
     list_name: 'list name must be in proper format'
