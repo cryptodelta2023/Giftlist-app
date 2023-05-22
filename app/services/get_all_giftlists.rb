@@ -2,7 +2,7 @@
 
 require 'http'
 
-class GiftListApp
+module GiftListApp
   # Returns all giftlists belonging to an account
   class GetAllGiftlists
     def initialize(config)

@@ -8,10 +8,10 @@ module GiftListApp
       config.messages.load_paths << File.join(__dir__, 'errors/new_giftinfo.yml')
 
       params do
-        required(:filename).filled(max_size?: 256, format?: FILENAME_REGEX)
-        required(:relative_path).maybe(format?: PATH_REGEX)
-        required(:description).maybe(:string)
-        required(:content).filled(:string)
+        required(:id).filled(max_size?: 256, format?: FILENAME_REGEX)
+        required(:giftname).maybe(format?: PATH_REGEX)
+        required(:url).maybe(:string)
+        required(:description).filled(:string)
       end
     end
   end

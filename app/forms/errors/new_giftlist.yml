@@ -1,4 +1,4 @@
 en:
   errors:
-    name: 'Giftlist name must be filled'
-    repo_url: 'URL must be in proper format'
+    id: 'Giftlist id must be filled'
+    list_name: 'list name must be in proper format'
