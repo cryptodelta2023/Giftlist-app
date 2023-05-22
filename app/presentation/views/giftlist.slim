@@ -1,0 +1,66 @@
+h2
+  == "#{giftlist.name}"
+
+dl
+  div class="row"
+    div class="col-xs-3"
+      dt Giftlist Repository:
+    div class="col-xs-9"
+      dd class="blockquote"
+        a href="#{giftlist.repo_url}" #{giftlist.repo_url}
+
+div class="row"
+  div class="col-lg-9"
+    div class="row"
+      table class="table"
+        thead
+          tr
+            th File
+            th Description
+        tbody
+          - giftlist.giftinfos.each do |giftinfo|
+            tr
+              td 
+                a href="/giftinfos/#{giftinfo.id}"
+                  == "#{giftinfo.filename}"
+              td #{giftinfo.description}
+    div class="row"
+      div class="col-xs-4"
+        - if giftlist.policies.can_add_giftinfos
+          button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGiftinfoModal" + New Giftinfo
+    div class="row" style="height:10px;"
+  div class="col-lg-3"
+    div class="panel panel-default"
+      div class="panel-heading" Followers
+      div class="panel-body"
+        - if giftlist.followers.empty?
+          span class="small" There are no followers yet
+        ul class="list-group"
+          li class="list-group-item clearfix"
+              = giftlist.owner.username
+          - giftlist.followers.each do |follower|
+            li class="list-group-item clearfix"
+              '  #{follower.username}
+              - if giftlist.policies.can_remove_followers
+                span class="float-end"
+                  form role='form' method='post' action="/giftlists/#{giftlist.id}/followers"
+                    input type='hidden' name='action' value='remove'
+                    input type='hidden' name='email' value="#{follower.email}"
+                    button type="submit" class="btn btn-xs btn-default"
+                      span class="fas fa-user-times"
+        - if giftlist.policies.can_add_followers
+          button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFollowerModal" + Add Follower
+
+include :giftinfo_new_partial
+include :follower_new_partial
+
+.row
+  .text-center
+    - if giftlist.policies.can_edit
+      a href="" edit giftlist
+    - if giftlist.policies.can_delete
+      == ' | '
+      a href="" delete giftlist
+    - if giftlist.policies.can_leave
+      == ' | '
+      a href="" leave giftlist

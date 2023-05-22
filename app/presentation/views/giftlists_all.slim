@@ -1,7 +1,8 @@
 div class="row" style="vertical-align: bottom;"
   div class="col-xs-9"
-    h3 All Giftlists
+    h3 Giftlists
   div class="col-xs-3"
+    button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGiftlistModal" + New Giftlist
 table class="table"
   thead
     tr
@@ -11,6 +12,8 @@ table class="table"
     - giftlists.all.each do |giftlist|
       tr
         td 
-          a href="/account/giftlists/#{giftlist.id}" #{giftlist.id}
+          a href="/giftlists/#{giftlist.id}" #{giftlist.id}
         td 
           a href="#{giftlist.list_name}" #{giftlist.list_name}
+
+include :giftlist_new_partial
