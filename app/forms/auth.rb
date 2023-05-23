@@ -14,13 +14,10 @@ module GiftListApp
     class Registration < Dry::Validation::Contract
       config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
 
-      p params
       params do
         required(:username).filled(format?: USERNAME_REGEX, min_size?: 4)
         required(:email).filled(format?: EMAIL_REGEX)
       end
-      p "Class Registration"
-      p params
     end
 
     class Passwords < Dry::Validation::Contract
