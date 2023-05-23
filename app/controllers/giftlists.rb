@@ -3,7 +3,7 @@
 require 'roda'
 
 module GiftListApp
-  # Web controller for Credence API
+  # Web controller for Giftlist API
   class App < Roda
     route('giftlists') do |routing|
       routing.on do
