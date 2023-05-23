@@ -34,7 +34,7 @@ module GiftListApp
     def process_giftinfos(giftinfos_info)
       return nil unless giftinfos_info
 
-      giftinfos_info.map { |info_info| Document.new(info_info) }
+      giftinfos_info.map { |info_info| Giftinfo.new(info_info) }
     end
 
     def process_followers(followers)

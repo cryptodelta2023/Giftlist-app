@@ -14,11 +14,6 @@ module GiftListApp
 
     def call(registration_data)
       registration_token = SecureMessage.encrypt(registration_data)
-      p registration_data
-      p registration_data.class
-      p "********"
-      p registration_token
-      p "-----"
       registration_data['verification_url'] =
         "#{@config.APP_URL}/auth/register/#{registration_token}"
 

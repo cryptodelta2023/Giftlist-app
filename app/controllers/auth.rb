@@ -73,7 +73,7 @@ module GiftListApp
               flash[:error] = Form.validation_errors(registration)
               routing.redirect @register_route
             end
-
+            
             VerifyRegistration.new(App.config).call(registration)
 
             flash[:notice] = 'Please check your email for a verification link'
