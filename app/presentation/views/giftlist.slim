@@ -7,7 +7,6 @@ dl
       dt Giftlist Repository:
     div class="col-xs-9"
       dd class="blockquote"
-        a href="#{giftlist.repo_url}" #{giftlist.repo_url}
 
 div class="row"
   div class="col-lg-9"
@@ -38,7 +37,7 @@ div class="row"
         ul class="list-group"
           li class="list-group-item clearfix"
               = giftlist.owner.username
-          - giftlist.followers.each do |follower|
+          - giftlist.follower.each do |follower|
             li class="list-group-item clearfix"
               '  #{follower.username}
               - if giftlist.policies.can_remove_followers

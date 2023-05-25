@@ -19,6 +19,9 @@ module GiftListApp
               @current_account, list_id
             )
             giftlist = Giftlist.new(list_info)
+            p giftlist
+            p giftlist.followers
+            p "-------"
 
             view :giftlist, locals: {
               current_account: @current_account, giftlist: giftlist

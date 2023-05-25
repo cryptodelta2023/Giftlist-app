@@ -4,7 +4,7 @@ module GiftListApp
   # Behaviors of the currently logged in account
   class Giftlist
     attr_reader :id, :list_name, # basic info
-                :owner, :folowers, :giftinfos, :policies # full details
+                :owner, :followers, :giftinfos, :policies # full details
 
     def initialize(giftlist_info)
       process_attributes(giftlist_info['attributes'])
