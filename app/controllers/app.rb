@@ -15,10 +15,10 @@ module GiftListApp
     plugin :flash
 
     route do |routing|
-      p "++++++"
       response['Content-Type'] = 'text/html; charset=utf-8'
-      p response
+      
       @current_account = CurrentSession.new(session).current_account
+      p response
 
       routing.public
       routing.assets
