@@ -28,7 +28,7 @@ gem 'rbnacl', '~>7.1'
 gem 'pry'
 gem 'rack-test'
 
-gem "rails_12factor"
+gem 'rails_12factor', group: :production
 
 # Development
 group :development do
