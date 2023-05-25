@@ -26,6 +26,7 @@ module GiftListApp
       # GET /
       routing.root do
         view 'home', locals: { current_account: @current_account }
+        p "到底想怎樣"
       end
     end
   end

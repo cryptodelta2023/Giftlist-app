@@ -11,7 +11,6 @@ module GiftListApp
       routing.is 'login' do
         # GET /auth/login
         routing.get do
-          p "測試"
           view :login
         end
 
