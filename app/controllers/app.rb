@@ -18,7 +18,6 @@ module GiftListApp
       response['Content-Type'] = 'text/html; charset=utf-8'
       
       @current_account = CurrentSession.new(session).current_account
-      p response
 
       routing.public
       routing.assets
