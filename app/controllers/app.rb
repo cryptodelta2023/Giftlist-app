@@ -16,8 +16,8 @@ module GiftListApp
 
     route do |routing|
       p "++++++"
-      p response
       response['Content-Type'] = 'text/html; charset=utf-8'
+      p response
       @current_account = CurrentSession.new(session).current_account
 
       routing.public
