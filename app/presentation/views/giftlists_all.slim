@@ -12,8 +12,8 @@ table class="table"
     - giftlists.all.each do |giftlist|
       tr
         td 
-          a href="/giftlists/#{giftlist.id}" #{giftlist.id}
+          a  #{giftlist.id}
         td 
-          a href="#{giftlist.list_name}" #{giftlist.list_name}
+          a href="/giftlists/#{giftlist.id}" #{giftlist.list_name}
 
 include :giftlist_new_partial
