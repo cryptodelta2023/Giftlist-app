@@ -23,10 +23,9 @@ module GiftListApp
       routing.assets
       routing.multi_route
 
-      # GET /
+      # GET / 123
       routing.root do
         view 'home', locals: { current_account: @current_account }
-        p "到底想怎樣"
       end
     end
   end
