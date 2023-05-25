@@ -14,14 +14,16 @@ div class="row"
       table class="table"
         thead
           tr
-            th File
+            th Giftname 
+            th URL
             th Description
         tbody
           - giftlist.giftinfos.each do |giftinfo|
             tr
+              td #{giftinfo.giftname}
               td 
-                a href="/giftinfos/#{giftinfo.id}"
-                  == "#{giftinfo.filename}"
+                a href="#{giftinfo.url}"
+                  == "#{giftinfo.url}"
               td #{giftinfo.description}
     div class="row"
       div class="col-xs-4"

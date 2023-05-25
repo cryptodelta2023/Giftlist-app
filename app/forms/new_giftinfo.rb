@@ -9,7 +9,7 @@ module GiftListApp
 
       params do
         # required(:id).filled(max_size?: 256, format?: FILENAME_REGEX)
-        required(:giftname).maybe(:string)
+        required(:giftname).filled.maybe(:string)
         required(:url).maybe(:string)
         required(:description).filled(:string)
       end

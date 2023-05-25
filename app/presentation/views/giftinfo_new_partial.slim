@@ -7,17 +7,14 @@ div id="newGiftinfoModal" class="modal fade" role="dialog"
       div class="modal-body"
         form role="form" action="/giftlists/#{giftlist.id}/giftinfos" method='post' id='new-giftinfo-form'
           div class="form-group"
-            label for='filename_input' File Name:
-            input type='text' name='filename' id='filename_input' class="form-control" placeholder="Filename is required"
+            label for='giftname_input' Giftinfo:
+            input type='text' name='giftname' id='giftname_input' class="form-control" placeholder="Giftname is required"
           div class="form-group"
-            label for='relative_path_input' Relative File Path:
-            span class="small" style="margin-left:10px;" (relative to giftlist root)
-            input type='text' name='relative_path' id='relative_path_input' class="form-control" placeholder="(optional)" value="/"
+            label for='relative_path_input' Gift URL:
+            span class="small" style="margin-left:10px;" (if there is a gift url)
+            input type='text' name='url' id='url_input' class="form-control" placeholder="(optional)"
           div class="form-group"
             label for='description_input' Description:
-            input type='text' name='description' id='description_input' class="form-control" placeholder="Describe the file"
-          div class="form-group"
-            label for='giftinfo_input' Giftinfo:
-            textarea name='content' id='content_input' class="form-control" placeholder="Copy/paste your giftinfo here"
+            input type='text' name='description' id='description_input' class="form-control" placeholder="Describe the Gift"
           button type='submit' class="btn btn-primary submit" id='registration-form-submit' value='submit' Create
           button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel
