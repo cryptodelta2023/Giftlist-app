@@ -37,7 +37,7 @@ div class="row"
         ul class="list-group"
           li class="list-group-item clearfix"
               = giftlist.owner.username
-          - giftlist.follower.each do |follower|
+          - giftlist.followers.each do |follower|
             li class="list-group-item clearfix"
               '  #{follower.username}
               - if giftlist.policies.can_remove_followers
