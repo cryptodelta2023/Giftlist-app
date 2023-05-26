@@ -61,23 +61,33 @@ module GiftListApp
 
           # POST /giftlists/[list_id]/giftinfos
           routing.post('giftinfos') do
+            action = routing.params['action']
             giftinfo_data = Form::NewGiftinfo.new.call(routing.params)
+            p giftinfo_data
             if giftinfo_data.failure?
               flash[:error] = Form.message_values(giftinfo_data)
               routing.halt
             end
 
-            CreateNewGiftinfo.new(App.config).call(
+            task_list = {
+              'add' => { service: CreateNewGiftinfo,
+                         message: 'Added new giftinfo to giftlist' },
+              'remove' => { service: RemoveGiftinfo,
+                            message: 'Removed giftinfo from giftlist' }
+            }
+            
+            task = task_list[action]
+            task[:service].new(App.config).call(
               current_account: @current_account,
-              giftlist_id: list_id,
-              giftinfo_data: giftinfo_data.to_h
+              giftinfo_data: giftinfo_data.to_h,
+              giftlist_id: list_id
             )
 
-            flash[:notice] = 'Your giftinfo was added'
+            flash[:notice] = task[:message]
           rescue StandardError => error
             puts error.inspect
             puts error.backtrace
-            flash[:error] = 'Could not add giftinfo'
+            flash[:error] = 'Could not find giftinfo'
           ensure
             routing.redirect @giftlist_route
           end

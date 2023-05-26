@@ -4,7 +4,7 @@ h2
 dl
   div class="row"
     div class="col-xs-3"
-      dt Giftlist Repository:
+      dt #{giftlist.owner.username}'s Giftlist
     div class="col-xs-9"
       dd class="blockquote"
 
@@ -30,7 +30,14 @@ div class="row"
               td #{giftinfo.description}
               - if giftlist.policies.can_delete_giftinfos
                 td
-                 span class="far fa-file-excel" aria-hidden="true"
+                  span class="float-end"
+                  form role='form' method='post' action="/giftlists/#{giftlist.id}/giftinfos"
+                    input type='hidden' name='action' value='remove'
+                    input type='hidden' name='id' value="#{giftinfo.id}"
+                    input type='hidden' name='giftname' value="#{giftinfo.giftname}"
+                    input type='hidden' name='description' value="#{giftinfo.description}"
+                    button type="submit" class="btn btn-xs btn-default"
+                      span class="far fa-file-excel" aria-hidden="true"
     div class="row"
       div class="col-xs-4"
         - if giftlist.policies.can_add_giftinfos
