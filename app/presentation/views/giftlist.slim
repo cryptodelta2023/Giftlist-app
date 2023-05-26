@@ -17,6 +17,9 @@ div class="row"
             th Giftname 
             th URL
             th Description
+            / th 
+            /   span class="far fa-file-excel" aria-hidden="true"
+
         tbody
           - giftlist.giftinfos.each do |giftinfo|
             tr
@@ -25,6 +28,9 @@ div class="row"
                 a href="#{giftinfo.url}"
                   == "#{giftinfo.url}"
               td #{giftinfo.description}
+              - if giftlist.policies.can_delete_giftinfos
+                td
+                 span class="far fa-file-excel" aria-hidden="true"
     div class="row"
       div class="col-xs-4"
         - if giftlist.policies.can_add_giftinfos
@@ -32,7 +38,7 @@ div class="row"
     div class="row" style="height:10px;"
   div class="col-lg-3"
     div class="panel panel-default"
-      div class="panel-heading" Followers
+      div class="panel-heading" Who Can See This List?
       div class="panel-body"
         - if giftlist.followers.empty?
           span class="small" There are no followers yet

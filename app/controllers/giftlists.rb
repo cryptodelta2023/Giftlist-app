@@ -59,7 +59,7 @@ module GiftListApp
             routing.redirect @giftlist_route
           end
 
-          # POST /giftlists/[list_id]/giftinfos/
+          # POST /giftlists/[list_id]/giftinfos
           routing.post('giftinfos') do
             giftinfo_data = Form::NewGiftinfo.new.call(routing.params)
             if giftinfo_data.failure?
