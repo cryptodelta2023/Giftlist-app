@@ -23,10 +23,12 @@ div class="row"
         tbody
           - giftlist.giftinfos.each do |giftinfo|
             tr
-              td #{giftinfo.giftname}
               td 
+                a href="/giftinfos/#{giftinfo.id}"
+                  == "#{giftinfo.giftname}"
+              td
                 a href="#{giftinfo.url}"
-                  == "#{giftinfo.url}"
+                  == "link"
               td #{giftinfo.description}
               - if giftlist.policies.can_delete_giftinfos
                 td

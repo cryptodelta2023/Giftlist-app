@@ -1,18 +1,18 @@
 h2 
-  a href="/giftlists/#{giftinfo.giftlist.id}" #{giftinfo.giftlist.name}
-h3 File: #{File.join(giftinfo.relative_path, giftinfo.filename)}
+  a href="/giftlists/#{giftinfo.giftlist.id}" #{giftinfo.giftlist.list_name}
+h3 Giftname: #{File.join(giftinfo.giftname)}
 
 dl
   div class="row"
+    / div class="col-xs-3"
+    /   dt Description:
+    / div class="col-xs-9"
+    /   dd class="blockquote" #{giftinfo.description}
     div class="col-xs-3"
       dt Description:
     div class="col-xs-9"
-      dd class="blockquote" #{giftinfo.description}
-    div class="col-xs-3"
-      dt Giftinfo:
-    div class="col-xs-9"
       dd class="blockquote"
-        a data-bs-toggle="collapse" href="#giftinfo" aria-expanded="false" aria-controls="giftinfo" show giftinfo
+        a data-bs-toggle="collapse" href="#giftinfo" aria-expanded="false" aria-controls="giftinfo" show description
         div id="giftinfo" class="collapse"
           dov class="card card-body"
-            pre class="force-wrap" #{giftinfo.content}
+            pre class="force-wrap" #{giftinfo.description}
