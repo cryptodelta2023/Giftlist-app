@@ -21,7 +21,7 @@ module GiftListApp
             giftlist = Giftlist.new(list_info)
 
             view :giftlist, locals: {
-              current_account: @current_account, giftlist: giftlist
+              current_account: @current_account, giftlist:
             }
           rescue StandardError => e
             puts "#{e.inspect}\n#{e.backtrace}"
@@ -63,7 +63,6 @@ module GiftListApp
           routing.post('giftinfos') do
             action = routing.params['action']
             giftinfo_data = Form::NewGiftinfo.new.call(routing.params)
-            p giftinfo_data
             if giftinfo_data.failure?
               flash[:error] = Form.message_values(giftinfo_data)
               routing.halt
@@ -75,7 +74,7 @@ module GiftListApp
               'remove' => { service: RemoveGiftinfo,
                             message: 'Removed giftinfo from giftlist' }
             }
-            
+
             task = task_list[action]
             task[:service].new(App.config).call(
               current_account: @current_account,
@@ -84,9 +83,9 @@ module GiftListApp
             )
 
             flash[:notice] = task[:message]
-          rescue StandardError => error
-            puts error.inspect
-            puts error.backtrace
+          rescue StandardError => e
+            puts e.inspect
+            puts e.backtrace
             flash[:error] = 'Could not find giftinfo'
           ensure
             routing.redirect @giftlist_route
@@ -100,7 +99,7 @@ module GiftListApp
           giftlists = Giftlists.new(giftlist_list)
 
           view :giftlists_all, locals: {
-            current_account: @current_account, giftlists: giftlists
+            current_account: @current_account, giftlists:
           }
         end
 
