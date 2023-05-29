@@ -74,7 +74,7 @@ module GiftListApp
               routing.redirect @register_route
             end
             
-            VerifyRegistration.new(App.config).call(registration.to_h)
+            VerifyRegistration.new(App.config).call(registration)
 
             flash[:notice] = 'Please check your email for a verification link'
             routing.redirect '/'
