@@ -64,10 +64,6 @@ module GiftListApp
       #     redis_server: {
       #       url: ENV.delete('REDIS_URL')
       #     }
-    end
-
-    configure :development, :test do
-      require 'pry'
 
       # Allows running reload! in pry to restart entire app
       def self.reload! = exec 'pry -r ./spec/test_load_all'

@@ -31,7 +31,7 @@ describe 'Test Service Objects' do
              .to_return(body: auth_return_json,
                         headers: { 'content-type' => 'application/json' })
 
-      auth = GiftListApp::AuthenticateAccount.new(app.config).call(**@credentials)
+      auth = GiftListApp::AuthenticateAccount.new.call(**@credentials)
 
       account = auth[:account]['attributes']
       _(account).wont_be_nil
@@ -42,10 +42,10 @@ describe 'Test Service Objects' do
     it 'BAD: should not find a false authenticated account' do
       WebMock.stub_request(:post, "#{API_URL}/auth/authenticate")
              .with(body: @mal_credentials.to_json)
-             .to_return(status: 403)
+             .to_return(status: 401)
       _(proc {
-        GiftListApp::AuthenticateAccount.new(app.config).call(**@mal_credentials)
-      }).must_raise GiftListApp::AuthenticateAccount::UnauthorizedError
+        GiftListApp::AuthenticateAccount.new.call(**@mal_credentials)
+      }).must_raise GiftListApp::AuthenticateAccount::NotAuthenticatedError
     end
   end
 end
