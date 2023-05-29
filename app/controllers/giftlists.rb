@@ -105,7 +105,7 @@ module GiftListApp
         # POST /giftlists/
         routing.post do
           routing.redirect '/auth/login' unless @current_account.logged_in?
-          puts "LIST: #{routing.params}"
+          # puts "LIST: #{routing.params}"
           giftlist_data = Form::NewGiftlist.new.call(routing.params)
           if giftlist_data.failure?
             flash[:error] = Form.message_values(giftlist_data)
