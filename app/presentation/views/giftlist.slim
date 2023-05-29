@@ -27,8 +27,14 @@ div class="row"
                 a href="/giftinfos/#{giftinfo.id}"
                   == "#{giftinfo.giftname}"
               td
-                a href="#{giftinfo.url}"
-                  == "link"
+                - if giftinfo.url == "" || giftinfo.url == "no URL" 
+                   | no URL
+                - else
+                  a href="#{giftinfo.url}"
+                    | link
+              / td
+              /   a href="#{giftinfo.url}"
+              /     == "link"
               td #{giftinfo.description}
               - if giftlist.policies.can_delete_giftinfos
                 td

@@ -84,9 +84,8 @@ module GiftListApp
 
             flash[:notice] = task[:message]
           rescue StandardError => e
-            puts e.inspect
-            puts e.backtrace
-            flash[:error] = 'Could not find giftinfo'
+            puts "ERROR IN #{action} GiftInfo: #{e.inspect}"
+            flash[:error] = "Could not #{action} giftinfo"
           ensure
             routing.redirect @giftlist_route
           end
@@ -119,7 +118,6 @@ module GiftListApp
 
           flash[:notice] = 'Add giftinfos and followers to your new giftlist'
         rescue StandardError => e
-          puts "FAILURE Creating Giftlist: #{e.inspect}"
           flash[:error] = 'Could not create giftlist'
         ensure
           routing.redirect @giftlists_route
