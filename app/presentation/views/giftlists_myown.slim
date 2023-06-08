@@ -1,0 +1,19 @@
+div class="row mt-2"
+  div class="col-md-9"
+    h3 MyGiftlists
+  div class="col-md-3"
+    button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGiftlistModal" + New Giftlist
+table class="table"
+  thead
+    tr
+      th Giftlist ID
+      th Giftlist Name
+  tbody
+    - giftlists.all.each do |giftlist|
+      tr
+        td 
+          a  #{giftlist.id}
+        td 
+          a href="/giftlists/#{giftlist.id}" #{giftlist.list_name}
+
+include :giftlist_new_partial

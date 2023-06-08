@@ -16,18 +16,33 @@ module GiftListApp
 
           # GET /giftlists/[list_id]
           routing.get do
-            list_info = GetGiftlist.new(App.config).call(
-              @current_account, list_id
-            )
-            giftlist = Giftlist.new(list_info)
+            if list_id == "myown" || list_id == "following"
+              giftlist_list = GetAllGiftlists.new(App.config).call(@current_account,list_id)
 
-            view :giftlist, locals: {
-              current_account: @current_account, giftlist:
-            }
-          rescue StandardError => e
-            puts "#{e.inspect}\n#{e.backtrace}"
-            flash[:error] = 'Giftlist not found'
-            routing.redirect @giftlists_route
+              giftlists = Giftlists.new(giftlist_list)
+              if list_id == "myown"
+                view :giftlists_myown, locals: {
+                  current_account: @current_account, giftlists:
+                }
+              elsif list_id == "following"
+                view :giftlists_following, locals: {
+                  current_account: @current_account, giftlists:
+                }
+              end
+            else
+              list_info = GetGiftlist.new(App.config).call(
+                @current_account, list_id
+              )
+              giftlist = Giftlist.new(list_info)
+
+              view :giftlist, locals: {
+                current_account: @current_account, giftlist:
+              }
+            end
+            rescue StandardError => e
+              puts "#{e.inspect}\n#{e.backtrace}"
+              flash[:error] = 'Giftlist not found'
+              routing.redirect @giftlists_route
           end
 
           # POST /giftlists/[list_id]/followers
@@ -98,7 +113,7 @@ module GiftListApp
 
           giftlists = Giftlists.new(giftlist_list)
 
-          view :giftlists_all, locals: {
+          view :giftlists_choose, locals: {
             current_account: @current_account, giftlists:
           }
         end

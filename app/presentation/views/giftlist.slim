@@ -14,7 +14,8 @@ div class="row"
       table class="table"
         thead
           tr
-            th Giftname 
+            th Giftname
+            th Owner 
             th URL
             th Description
             / th 
@@ -26,6 +27,7 @@ div class="row"
               td 
                 a href="/giftinfos/#{giftinfo.id}"
                   == "#{giftinfo.giftname}"
+              td #{giftlist.owner.username}
               td
                 - if giftinfo.url == "" || giftinfo.url == "no URL" 
                    | no URL
