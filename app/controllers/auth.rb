@@ -44,7 +44,7 @@ module GiftListApp
           CurrentSession.new(session).current_account = current_account
 
           flash[:notice] = "Welcome back #{current_account.username}!"
-          routing.redirect '/giftlists'
+          routing.redirect '/'
         rescue AuthenticateAccount::NotAuthenticatedError # UnauthorizedError
           flash.now[:error] = 'Username and password did not match our records'
           response.status = 401
@@ -72,7 +72,7 @@ module GiftListApp
           CurrentSession.new(session).current_account = current_account
 
           flash[:notice] = "Welcome #{current_account.username}!"
-          routing.redirect '/giftlists'
+          routing.redirect '/'
         rescue AuthorizeGithubAccount::UnauthorizedError
           flash[:error] = 'Could not login with Github'
           response.status = 403
@@ -111,7 +111,7 @@ module GiftListApp
               flash[:error] = Form.validation_errors(registration)
               routing.redirect @register_route
             end
-            
+
             VerifyRegistration.new(App.config).call(registration)
 
             flash[:notice] = 'Please check your email for a verification link'

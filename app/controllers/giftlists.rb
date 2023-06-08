@@ -134,9 +134,9 @@ module GiftListApp
 
           flash[:notice] = 'Add giftinfos and followers to your new giftlist'
         rescue StandardError => e
-          flash[:error] = 'Could not create giftlist'
+          flash[:error] = 'Could not create giftlist, list name might be duplicated'
         ensure
-          routing.redirect @giftlists_route
+          routing.redirect '/giftlists/myown'
         end
       end
     end
