@@ -10,13 +10,13 @@ module GiftListApp
     end
 
     def call(current_account, own_or_follow = '')
-      if own_or_follow == ''
-        response = HTTP.auth("Bearer #{current_account.auth_token}")
-                      .get("#{@config.API_URL}/giftlists")
-      else
-        response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/giftlists/#{own_or_follow}")
-      end
+      response = if own_or_follow == ''
+                   HTTP.auth("Bearer #{current_account.auth_token}")
+                       .get("#{@config.API_URL}/giftlists")
+                 else
+                   HTTP.auth("Bearer #{current_account.auth_token}")
+                       .get("#{@config.API_URL}/giftlists/#{own_or_follow}")
+                 end
 
       response.code == 200 ? JSON.parse(response.to_s)['data'] : nil
     end
