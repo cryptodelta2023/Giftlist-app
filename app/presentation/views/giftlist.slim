@@ -77,11 +77,12 @@ div class="row"
 
 include :giftinfo_new_partial
 include :follower_new_partial
+include :giftlist_edit_partial
 
 .row
   .text-center
     - if giftlist.policies.can_edit
-       a href="#newFollowerModal" data-bs-toggle="modal" edit giftlist
+       a href="#editGiftlistModal" data-bs-toggle="modal" edit giftlist
     - if giftlist.policies.can_delete
       == ' | '
       a href="" delete giftlist

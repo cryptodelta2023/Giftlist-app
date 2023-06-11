@@ -16,15 +16,15 @@ module GiftListApp
 
           # GET /giftlists/[list_id]
           routing.get do
-            if list_id == "myown" || list_id == "following"
-              giftlist_list = GetAllGiftlists.new(App.config).call(@current_account,list_id)
+            if %w[myown following].include?(list_id)
+              giftlist_list = GetAllGiftlists.new(App.config).call(@current_account, list_id)
 
               giftlists = Giftlists.new(giftlist_list)
-              if list_id == "myown"
+              if list_id == 'myown'
                 view :giftlists_myown, locals: {
                   current_account: @current_account, giftlists:
                 }
-              elsif list_id == "following"
+              elsif list_id == 'following'
                 view :giftlists_following, locals: {
                   current_account: @current_account, giftlists:
                 }
@@ -39,10 +39,43 @@ module GiftListApp
                 current_account: @current_account, giftlist:
               }
             end
-            rescue StandardError => e
-              puts "#{e.inspect}\n#{e.backtrace}"
-              flash[:error] = 'Giftlist not found'
-              routing.redirect @giftlists_route
+          rescue StandardError => e
+            puts "#{e.inspect}\n#{e.backtrace}"
+            flash[:error] = 'Giftlist not found'
+            routing.redirect @giftlists_route
+          end
+
+          # POST /giftlists/[list_id]
+
+          routing.post do
+            action = routing.params['action']
+            new_list_name = routing.params['new_list_name']
+            giftlist_data = Form::NewGiftlist.new.call(routing.params)
+            if giftlist_data.failure?
+              flash[:error] = Form.validation_errors(giftlist_data)
+              routing.halt
+            end
+
+            task_list = {
+              'edit' => { service: EditGiftlist,
+                          message: 'Edit the name of giftlist' },
+              'remove' => { service: RemoveFollower,
+                            message: 'Removed follower from giftlist' }
+            }
+
+            task = task_list[action]
+            
+            task[:service].new(App.config).call(
+              current_account: @current_account,
+              new_list_name:,
+              giftlist_id: list_id
+            )
+            flash[:notice] = task[:message]
+
+          rescue StandardError => e
+            flash[:error] = e
+          ensure
+            routing.redirect @giftlist_route
           end
 
           # POST /giftlists/[list_id]/followers
