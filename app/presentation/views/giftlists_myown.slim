@@ -15,5 +15,8 @@ table class="table"
         /   a  #{giftlist.id}
         td 
           a href="/giftlists/#{giftlist.id}" #{giftlist.list_name}
+        td 
+           a href="#editGiftlistModal" data-bs-toggle="modal" data-bs-target="#editGiftlistModal" edit 
 
 include :giftlist_new_partial
+include :giftlist_edit_partial

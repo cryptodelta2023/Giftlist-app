@@ -81,7 +81,7 @@ include :follower_new_partial
 .row
   .text-center
     - if giftlist.policies.can_edit
-      a href="" edit giftlist
+       a href="#newFollowerModal" data-bs-toggle="modal" edit giftlist
     - if giftlist.policies.can_delete
       == ' | '
       a href="" delete giftlist
