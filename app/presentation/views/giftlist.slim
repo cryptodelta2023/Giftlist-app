@@ -47,7 +47,7 @@ div class="row"
                     input type='hidden' name='giftname' value="#{giftinfo.giftname}"
                     input type='hidden' name='description' value="#{giftinfo.description}"
                     button type="submit" class="btn btn-xs btn-default"
-                      span class="far fa-file-excel" aria-hidden="true"
+                      | ❌
     div class="row"
       div class="col-xs-4"
         - if giftlist.policies.can_add_giftinfos
@@ -71,7 +71,7 @@ div class="row"
                     input type='hidden' name='action' value='remove'
                     input type='hidden' name='email' value="#{follower.email}"
                     button type="submit" class="btn btn-xs btn-default"
-                      span class="fas fa-user-times"
+                      | ❌
         - if giftlist.policies.can_add_followers
           button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFollowerModal" + Add Follower
 
