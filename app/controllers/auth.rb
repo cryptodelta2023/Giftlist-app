@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'roda'
+require 'roda' # rubocop:disable Metrics/ClassLength
 require_relative './app'
 
 module GiftListApp
@@ -15,7 +15,7 @@ module GiftListApp
     end
 
     route('auth') do |routing|
-      @oauth_callback = '/auth/sso_callback'
+      # @oauth_callback = '/auth/sso_callback'
       @login_route = '/auth/login'
       routing.is 'login' do
         # GET /auth/login
@@ -44,11 +44,11 @@ module GiftListApp
           CurrentSession.new(session).current_account = current_account
 
           flash[:notice] = "Welcome back #{current_account.username}!"
-          routing.redirect '/giftlists'
+          routing.redirect '/'
         rescue AuthenticateAccount::NotAuthenticatedError # UnauthorizedError
-          flash[:error] = 'Username and password did not match our records'
+          flash.now[:error] = 'Username and password did not match our records'
           response.status = 401
-          routing.redirect @login_route
+          view :login
         rescue AuthenticateAccount::ApiServerError => e
           App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
           flash[:error] = 'Our servers are not responding -- please try later'
@@ -72,7 +72,7 @@ module GiftListApp
           CurrentSession.new(session).current_account = current_account
 
           flash[:notice] = "Welcome #{current_account.username}!"
-          routing.redirect '/giftlists'
+          routing.redirect '/'
         rescue AuthorizeGithubAccount::UnauthorizedError
           flash[:error] = 'Could not login with Github'
           response.status = 403
@@ -111,7 +111,7 @@ module GiftListApp
               flash[:error] = Form.validation_errors(registration)
               routing.redirect @register_route
             end
-            
+
             VerifyRegistration.new(App.config).call(registration)
 
             flash[:notice] = 'Please check your email for a verification link'

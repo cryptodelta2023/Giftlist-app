@@ -9,9 +9,14 @@ module GiftListApp
       @config = config
     end
 
-    def call(current_account)
-      response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/giftlists")
+    def call(current_account, own_or_follow = '')
+      response = if own_or_follow == ''
+                   HTTP.auth("Bearer #{current_account.auth_token}")
+                       .get("#{@config.API_URL}/giftlists")
+                 else
+                   HTTP.auth("Bearer #{current_account.auth_token}")
+                       .get("#{@config.API_URL}/giftlists/#{own_or_follow}")
+                 end
 
       response.code == 200 ? JSON.parse(response.to_s)['data'] : nil
     end

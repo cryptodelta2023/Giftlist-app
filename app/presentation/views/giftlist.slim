@@ -14,7 +14,8 @@ div class="row"
       table class="table"
         thead
           tr
-            th Giftname 
+            th Giftname
+            th Owner 
             th URL
             th Description
             / th 
@@ -26,6 +27,7 @@ div class="row"
               td 
                 a href="/giftinfos/#{giftinfo.id}"
                   == "#{giftinfo.giftname}"
+              td #{giftlist.owner.username}
               td
                 - if giftinfo.url == "" || giftinfo.url == "no URL" 
                    | no URL
@@ -45,12 +47,12 @@ div class="row"
                     input type='hidden' name='giftname' value="#{giftinfo.giftname}"
                     input type='hidden' name='description' value="#{giftinfo.description}"
                     button type="submit" class="btn btn-xs btn-default"
-                      span class="far fa-file-excel" aria-hidden="true"
+                      | ❌
     div class="row"
       div class="col-xs-4"
         - if giftlist.policies.can_add_giftinfos
           button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newGiftinfoModal" + New Giftinfo
-    div class="row" style="height:10px;"
+    div class="row mt-2"
   div class="col-lg-3"
     div class="panel panel-default"
       div class="panel-heading" Who Can See This List?
@@ -69,17 +71,18 @@ div class="row"
                     input type='hidden' name='action' value='remove'
                     input type='hidden' name='email' value="#{follower.email}"
                     button type="submit" class="btn btn-xs btn-default"
-                      span class="fas fa-user-times"
+                      | ❌
         - if giftlist.policies.can_add_followers
           button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFollowerModal" + Add Follower
 
 include :giftinfo_new_partial
 include :follower_new_partial
+include :giftlist_edit_partial
 
 .row
   .text-center
     - if giftlist.policies.can_edit
-      a href="" edit giftlist
+       a href="#editGiftlistModal" data-bs-toggle="modal" edit giftlist
     - if giftlist.policies.can_delete
       == ' | '
       a href="" delete giftlist
