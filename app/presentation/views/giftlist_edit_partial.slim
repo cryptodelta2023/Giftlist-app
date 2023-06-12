@@ -1,0 +1,16 @@
+div id="editGiftlistModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        h4 class="modal-title" Edit Giftlist: #{giftlist.list_name}
+        button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      div class="modal-body"
+        form role="form" action="/giftlists/#{giftlist.id}" method="post" id="edit-giftlist-form"
+          input type="hidden" name="_method" value="put"
+          div class="form-group"
+            label for="name_input" New Giftlist Name:
+            input type="text" name="new_list_name" id="name_input" class="form-control" placeholder="name is required" 
+            input type='hidden' name='list_name' value="#{giftlist.list_name}"
+            input type='hidden' name='action' value='edit'
+          button type="submit" id="edit-giftlist-submit" class="submit" value="submit" class="btn btn-primary" Edit
+          button type="button" class="btn btn-secondary" data-bs-dismiss="modal" Cancel
