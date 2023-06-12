@@ -107,8 +107,12 @@ module GiftListApp
             )
             flash[:notice] = task[:message]
 
-          rescue StandardError
-            flash[:error] = 'Could not find follower'
+          rescue StandardError => e
+            flash[:error] = e.message
+          rescue FollowerIsOwner => e
+            flash[:error] = e.message
+          rescue FollowerAlreadyAdded => e
+            flash[:error] = e.message
           ensure
             routing.redirect @giftlist_route
           end
