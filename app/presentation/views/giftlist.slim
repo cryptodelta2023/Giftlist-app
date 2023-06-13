@@ -78,6 +78,7 @@ div class="row"
 include :giftinfo_new_partial
 include :follower_new_partial
 include :giftlist_edit_partial
+include :giftlist_delete_partial
 
 .row
   .text-center
@@ -85,7 +86,7 @@ include :giftlist_edit_partial
        a href="#editGiftlistModal" data-bs-toggle="modal" edit giftlist
     - if giftlist.policies.can_delete
       == ' | '
-      a href="" delete giftlist
+      a href="#deleteGiftlistModal" data-bs-toggle="modal" delete giftlist
     - if giftlist.policies.can_leave
       == ' | '
       a href="" leave giftlist

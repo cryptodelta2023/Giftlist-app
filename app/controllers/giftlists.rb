@@ -27,9 +27,13 @@ module GiftListApp
 
               task_list = {
                 'edit' => { service: EditGiftlist,
-                            message: 'Edit the name of giftlist' },
-                'remove' => { service: RemoveFollower,
-                              message: 'Removed follower from giftlist' }
+                            message: 'Edit the name of giftlist',
+                            redirect_route: @giftlist_route,
+                            err_msg: "Can't edit the list name now! Please try it later🙏" },
+                'delete' => { service: DeleteGiftlist,
+                              message: 'Removed follower from giftlist',
+                              redirect_route: '/giftlists/myown',
+                              err_msg: "Can't delete now! Please try it later🙏" }
               }
 
               task = task_list[action]
@@ -41,10 +45,10 @@ module GiftListApp
               )
               flash[:notice] = task[:message]
 
-            rescue StandardError => e
-              flash[:error] = e
+            rescue StandardError
+              flash[:error] = task[:err_msg]
             ensure
-              routing.redirect @giftlist_route
+              routing.redirect task[:redirect_route]
             end
 
             # GET /giftlists/[list_id]
@@ -103,8 +107,12 @@ module GiftListApp
             )
             flash[:notice] = task[:message]
 
-          rescue StandardError
-            flash[:error] = 'Could not find follower'
+          rescue StandardError => e
+            flash[:error] = e.message
+          rescue FollowerIsOwner => e
+            flash[:error] = e.message
+          rescue FollowerAlreadyAdded => e
+            flash[:error] = e.message
           ensure
             routing.redirect @giftlist_route
           end
