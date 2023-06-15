@@ -18,7 +18,9 @@ module GiftListApp
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                      .post(config_url,
                            json: { new_list_name:, giftlist_id: })
-      
+
+      print(response.code)
+      raise StandardError if response.code == 500
       response.code == 200 ? JSON.parse(response.body.to_s)['data'] : nil
     end
   end

@@ -29,9 +29,9 @@ module GiftListApp
                 'edit' => { service: EditGiftlist,
                             message: 'Edit the name of giftlist',
                             redirect_route: @giftlist_route,
-                            err_msg: "Can't edit the list name now! Please try it later🙏" },
+                            err_msg: "Edit giftlist error, your input should not be empty or the list name already exists" },
                 'delete' => { service: DeleteGiftlist,
-                              message: 'Removed follower from giftlist',
+                              message: 'Removed giftlist',
                               redirect_route: '/giftlists/myown',
                               err_msg: "Can't delete now! Please try it later🙏" }
               }
@@ -79,7 +79,7 @@ module GiftListApp
             rescue StandardError => e
               puts "#{e.inspect}\n#{e.backtrace}"
               flash[:error] = 'Giftlist not found'
-              routing.redirect @giftlists_route
+              routing.redirect @giftlist_route
             end
           end
 
@@ -174,7 +174,7 @@ module GiftListApp
             giftlist_data: giftlist_data.to_h
           )
 
-          flash[:notice] = 'Add giftinfos and followers to your new giftlist'
+          flash[:notice] = 'Giftlist created, please add giftinfos and followers to your new giftlist'
         rescue StandardError => e
           flash[:error] = 'Could not create giftlist, list name might be duplicated'
         ensure
