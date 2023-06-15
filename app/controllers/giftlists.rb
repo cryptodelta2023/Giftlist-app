@@ -79,7 +79,7 @@ module GiftListApp
             rescue StandardError => e
               puts "#{e.inspect}\n#{e.backtrace}"
               flash[:error] = 'Giftlist not found'
-              routing.redirect @giftlists_route
+              routing.redirect @giftlist_route
             end
           end
 
