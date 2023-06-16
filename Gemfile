@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 ruby File.read('.ruby-version').strip
 
+gem 'simplecov'
+
 # Web
 gem 'puma', '~>6.0'
 gem 'rack-session', '~>2.0'
